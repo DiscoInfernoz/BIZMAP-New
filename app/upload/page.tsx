@@ -1,12 +1,13 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Papa from 'papaparse';
 import * as XLSX from 'xlsx';
 import { parseFullAddressToParts, isFullAddressHeader } from '@/lib/addresses';
 import { toast } from 'sonner';
-import { useSessionData } from '@/app/context/DataContext';
+import { useSessionData } from '@/contexts/DataContext';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface CSVRow {
   [key: string]: any; // allow needs_geocode booleans etc.
@@ -149,6 +150,15 @@ const parseCSVFile = (file: File): Promise<{ data: CSVRow[]; headers: string[] }
 };
 
 export default function UploadPage() {
+  const router = useRouter();
+  const { user, loading } = useAuth(); // Add this line
+
+  useEffect(() => { // Add this block
+    if (!loading && !user) {
+      router.push('/login');
+    }
+  }, [user, loading, router]);
+
   const [csvData, setCsvData] = useState<CSVRow[]>([]);
   const [originalHeaders, setOriginalHeaders] = useState<string[]>([]);
   const [columnMapping, setColumnMapping] = useState<Record<string, string>>({});
@@ -164,7 +174,6 @@ export default function UploadPage() {
   const [isGeocoding, setIsGeocoding] = useState(false);
   const [geocodingProgress, setGeocodingProgress] = useState<{ current: number; total: number } | null>(null);
   const { setData } = useSessionData();
-  const router = useRouter();
 
   const validateDate = (dateStr: string): boolean => {
     if (!dateStr) return false;

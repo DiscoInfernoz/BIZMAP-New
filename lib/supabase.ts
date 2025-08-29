@@ -5,21 +5,31 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOi
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
+// Updated to match your actual database schema
 export type Job = {
   id: string
-  user_id?: string
-  name: string
-  service_date: string
-  price: number
-  service_type?: string
-  lead_source?: string
-  street?: string
+  workspace_id?: string  // This will store the user ID
+  customer_name: string
+  job_date: string
+  revenue: number
+  phone?: string
+  email?: string
+  address_line1?: string
+  address_line2?: string
   city?: string
   state?: string
   zip?: string
-  full_address?: string
-  lat?: number
-  lng?: number
-  needs_geocode: boolean
+  latitude?: number
+  longitude?: number
+  geocode_status?: string
   created_at: string
+}
+
+export type UserProfile = {
+  id: string
+  business_name: string
+  phone?: string
+  email?: string
+  created_at: string
+  updated_at: string
 }

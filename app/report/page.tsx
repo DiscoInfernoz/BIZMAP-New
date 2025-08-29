@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import "mapbox-gl/dist/mapbox-gl.css";
 import MapboxMap, { Marker, Popup, Source, Layer } from "react-map-gl/mapbox";
-import { useSessionData, type CsvRow } from "@/app/context/DataContext";
+import { useSessionData, type CsvRow } from "@/contexts/DataContext";
 import { Calendar, ChevronDown, ChevronUp } from "lucide-react";
 
 interface ZipRow {
