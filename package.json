@@ -38,6 +38,7 @@
     "@radix-ui/react-toggle": "^1.1.0",
     "@radix-ui/react-toggle-group": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.2",
+    "@supabase/ssr": "^0.7.0",
     "@supabase/supabase-js": "^2.56.0",
     "@types/better-sqlite3": "^7.6.13",
     "@types/node": "20.6.2",
@@ -55,7 +56,7 @@
     "input-otp": "^1.2.4",
     "lucide-react": "^0.446.0",
     "mapbox-gl": "^3.14.0",
-    "next": "13.5.1",
+    "next": "^13.5.11",
     "next-themes": "^0.3.0",
     "papaparse": "^5.5.3",
     "postcss": "8.4.30",
@@ -76,6 +77,6 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/xlsx": "^0.0.36"
+    "@types/xlsx": "^0.0.35"
   }
 }

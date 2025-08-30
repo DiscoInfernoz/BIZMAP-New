@@ -2,7 +2,10 @@
 
 import { createContext, useContext, useEffect, useState } from 'react'
 import { User } from '@supabase/supabase-js'
-import { supabase, UserProfile } from '@/lib/supabase'
+import { createClient } from '@/utils/supabase/client'   // ✅ use the singleton
+import type { UserProfile } from '@/lib/supabase'
+
+const supabase = createClient(); // ✅ one shared browser client
 
 interface AuthContextType {
   user: User | null
